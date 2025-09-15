@@ -9,36 +9,33 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=MedievalSharp&display=swap" rel="stylesheet">
 
+  <!-- Preload de imagens -->
   <link rel="preload" as="image" href="assets/sprites/bg_tavern.svg" />
+
+  <!-- CSS -->
   <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
-  <button id="btnDebug" style="position:absolute;top:10px;right:10px;z-index:999">Modo Debug</button>
   <div id="app">
     <div id="start-screen" class="screen screen--center">
       <div class="title-wrap">
         <h1 class="title">Kassius II — O Julgamento</h1>
         <p class="subtitle">Um cavaleiro. Um cachorro. Um feitiço. Um Juiz.</p>
         <div class="start-row">
-          <label for="difficulty">Dificuldade:</label>
-          <select id="difficulty" class="select">
-            <option value="normal" selected>Normal</option>
-            <option value="easy">Fácil</option>
-            <option value="heroic">Heróico</option>
-          </select>
+          <!-- Botão para iniciar jogo e áudio -->
+          <button id="startButton" class="btn">Iniciar Jogo</button>
         </div>
       </div>
-      <button class="btn btn-primary" id="btnStart">Iniciar aventura</button>
-      <div class="credits">por Sérgio • HTML5 / CSS / JS</div>
     </div>
 
-    <div id="game-ui" class="hidden">
-      <header class="hud">
+    <!-- HUD principal -->
+    <div id="hud" class="hud hidden">
+      <header class="hud__header">
         <div class="hud__left">
           <div class="char">
-            <img src="assets/sprites/kassius.svg" alt="Kassius II" />
+            <img src="assets/sprites/kassius.svg" alt="Kassius" />
             <div class="char__meta">
-              <div class="char__name">Kassius II</div>
+              <div class="char__name">Kassius</div>
               <div class="bar">
                 <div class="bar__label">HP</div>
                 <div class="bar__track"><div id="hpKassius" class="bar__fill"></div></div>
@@ -73,6 +70,7 @@
       </footer>
     </div>
 
+    <!-- Modal -->
     <div id="modal" class="modal hidden">
       <div class="modal__content">
         <div id="modalText" class="modal__text"></div>
@@ -80,6 +78,7 @@
       </div>
     </div>
 
+    <!-- Batalha -->
     <div id="battle" class="battle hidden">
       <div class="battle__bg">
         <div class="battle__enemies" id="battleEnemies"></div>
@@ -91,16 +90,34 @@
       </div>
     </div>
 
+    <!-- Overlay -->
     <div id="overlay" class="overlay hidden"></div>
   </div>
 
+  <!-- Música de fundo -->
   <audio id="bgm" src="assets/audio/ambient.mp3" loop preload="auto"></audio>
 
-  <script src="js/data.js"></script>
-  <script src="js/ui.js"></script>
-  <script src="js/battle.js"></script>
-  <script src="js/scenes.js"></script>
-  <script src="js/main.js"></script>
+  <!-- Scripts (carregados em ordem com defer) -->
+  <script src="js/data.js" defer></script>
+  <script src="js/ui.js" defer></script>
+  <script src="js/battle.js" defer></script>
+  <script src="js/scenes.js" defer></script>
+  <script src="js/main.js" defer></script>
+
+  <!-- Script para iniciar áudio e jogo -->
+  <script>
+    document.getElementById("startButton").addEventListener("click", () => {
+      const bgm = document.getElementById("bgm");
+      bgm.play().catch(err => console.warn("Autoplay bloqueado:", err));
+      
+      // Esconde tela inicial, mostra HUD e inicia jogo
+      document.getElementById("start-screen").classList.add("hidden");
+      document.getElementById("hud").classList.remove("hidden");
+
+      if (typeof window.startGame === "function") {
+        window.startGame(); // chamar função do main.js se existir
+      }
+    });
+  </script>
 </body>
 </html>
-
