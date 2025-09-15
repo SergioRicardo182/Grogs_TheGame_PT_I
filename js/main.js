@@ -64,3 +64,10 @@
 
   document.getElementById("btnStart").addEventListener("click", start);
 })();
+document.getElementById("btnDebug").addEventListener("click", () => {
+  document.getElementById("start-screen").classList.add("hidden");
+  document.getElementById("game-ui").classList.remove("hidden");
+  console.log("[DEBUG] Cena inicial forçada");
+  Scenes.renderScene("tavern");
+});
+
