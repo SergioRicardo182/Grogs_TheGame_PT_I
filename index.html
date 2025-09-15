@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Kassius II — O Julgamento</title>
+
+  <!-- Fonte medieval -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=MedievalSharp&display=swap" rel="stylesheet">
+
+  <link rel="preload" as="image" href="assets/sprites/bg_tavern.svg" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <div id="app">
+    <div id="start-screen" class="screen screen--center">
+      <div class="title-wrap">
+        <h1 class="title">Kassius II — O Julgamento</h1>
+        <p class="subtitle">Um cavaleiro. Um cachorro. Um feitiço. Um Juiz.</p>
+        <div class="start-row">
+          <label for="difficulty">Dificuldade:</label>
+          <select id="difficulty" class="select">
+            <option value="normal" selected>Normal</option>
+            <option value="easy">Fácil</option>
+            <option value="heroic">Heróico</option>
+          </select>
+        </div>
+      </div>
+      <button class="btn btn-primary" id="btnStart">Iniciar aventura</button>
+      <div class="credits">por Sérgio • HTML5 / CSS / JS</div>
+    </div>
+
+    <div id="game-ui" class="hidden">
+      <header class="hud">
+        <div class="hud__left">
+          <div class="char">
+            <img src="assets/sprites/kassius.svg" alt="Kassius II" />
+            <div class="char__meta">
+              <div class="char__name">Kassius II</div>
+              <div class="bar">
+                <div class="bar__label">HP</div>
+                <div class="bar__track"><div id="hpKassius" class="bar__fill"></div></div>
+              </div>
+              <div class="bar bar--mp">
+                <div class="bar__label">MP</div>
+                <div class="bar__track"><div id="mpKassius" class="bar__fill bar__fill--mp"></div></div>
+              </div>
+            </div>
+          </div>
+          <div class="char">
+            <img src="assets/sprites/kassinho.svg" alt="Kassinho" />
+            <div class="char__meta">
+              <div class="char__name">Kassinho</div>
+              <div class="bar">
+                <div class="bar__label">HP</div>
+                <div class="bar__track"><div id="hpKassinho" class="bar__fill"></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="hud__right">
+          <div class="inventory" id="inventory"></div>
+        </div>
+      </header>
+
+      <main id="scene" class="scene"></main>
+
+      <footer class="footer">
+        <div id="log" class="log"></div>
+        <div id="actions" class="actions"></div>
+      </footer>
+    </div>
+
+    <div id="modal" class="modal hidden">
+      <div class="modal__content">
+        <div id="modalText" class="modal__text"></div>
+        <div id="modalChoices" class="modal__choices"></div>
+      </div>
+    </div>
+
+    <div id="battle" class="battle hidden">
+      <div class="battle__bg">
+        <div class="battle__enemies" id="battleEnemies"></div>
+        <div class="battle__party" id="battleParty"></div>
+      </div>
+      <div class="battle__ui">
+        <div id="battleLog" class="battle__log"></div>
+        <div id="battleActions" class="battle__actions"></div>
+      </div>
+    </div>
+
+    <div id="overlay" class="overlay hidden"></div>
+  </div>
+
+  <audio id="bgm" src="assets/audio/ambient.mp3" loop preload="auto"></audio>
+
+  <script src="js/data.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/battle.js"></script>
+  <script src="js/scenes.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
