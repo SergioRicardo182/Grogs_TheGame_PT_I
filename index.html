@@ -95,7 +95,7 @@
   </div>
 
   <!-- Música de fundo -->
-  <audio id="bgm" src="assets/audio/ambient.mp3" loop preload="auto"></audio>
+  <audio id="bgm" src="assets/audio/ambient.wav" loop preload="auto"></audio>
 
   <!-- Scripts (carregados em ordem com defer) -->
   <script src="js/data.js" defer></script>
@@ -106,16 +106,25 @@
 
   <!-- Script para iniciar áudio e jogo -->
   <script>
-    document.getElementById("startButton").addEventListener("click", () => {
-      const bgm = document.getElementById("bgm");
-      bgm.play().catch(err => console.warn("Autoplay bloqueado:", err));
-      
-      // Esconde tela inicial, mostra HUD e inicia jogo
-      document.getElementById("start-screen").classList.add("hidden");
-      document.getElementById("hud").classList.remove("hidden");
+    document.addEventListener('DOMContentLoaded', function() {
+      var startBtn = document.getElementById("startButton");
+      if (startBtn) {
+        startBtn.addEventListener("click", function() {
+          const bgm = document.getElementById("bgm");
+          if (bgm) {
+            bgm.play().catch(err => console.warn("Autoplay bloqueado:", err));
+          }
 
-      if (typeof window.startGame === "function") {
-        window.startGame(); // chamar função do main.js se existir
+          // Esconde tela inicial, mostra HUD e inicia jogo
+          var startScreen = document.getElementById("start-screen");
+          var hud = document.getElementById("hud");
+          if (startScreen) startScreen.classList.add("hidden");
+          if (hud) hud.classList.remove("hidden");
+
+          if (typeof window.startGame === "function") {
+            window.startGame(); // chamar função do main.js se existir
+          }
+        });
       }
     });
   </script>
