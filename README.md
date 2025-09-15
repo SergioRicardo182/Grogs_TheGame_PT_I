@@ -1,3 +1,6 @@
+![Kassius II Banner](assets/sprites/bg_tavern.svg)
+
+
 # 🛡️ Kassius II — O Julgamento
 
 Um mini RPG por turnos feito em HTML5, CSS e JavaScript, com tema medieval e narrativa interativa. Kassius II, um cavaleiro solitário, e seu fiel cachorro Kassinho embarcam numa jornada para desvendar um feitiço sombrio lançado por um vilão conhecido como **O Juiz**.
