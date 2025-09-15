@@ -6,7 +6,7 @@ Um mini RPG por turnos feito em HTML5, CSS e JavaScript, com tema medieval e nar
 
 ## 🎮 Como Jogar
 
-- Acesse: [https://seu-usuario.github.io/kassius-ii](https://seu-usuario.github.io/kassius-ii)
+- Acesse: [https://seu-usuario.github.io/kassius-ii](https://sSergioRicardo182.github.io/Grogs_TheGame_PT_I)
 - Escolha a dificuldade: Fácil, Normal ou Heróico.
 - Clique em **Iniciar Aventura**.
 - Explore cenas, colete pistas e enfrente inimigos em batalhas por turnos.
